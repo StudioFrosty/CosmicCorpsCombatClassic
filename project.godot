@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Cosmic Corps Combat Classic"
+run/main_scene="res://Title Screen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [editor]
 
