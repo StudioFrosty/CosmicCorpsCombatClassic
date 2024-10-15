@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj3nyy5j32m7f"]
+
+[ext_resource type="PackedScene" uid="uid://ci3vcacejkcq3" path="res://models/characters/ybot/ybot.blend" id="1_q0gs1"]
+
+[node name="ybot2" instance=ExtResource("1_q0gs1")]
