@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmk5ljljegrum"]
+
+[ext_resource type="PackedScene" uid="uid://irl7qd07y22h" path="res://models/objects/bagTraining/bagTraining.blend" id="1_36n74"]
+[ext_resource type="Script" path="res://addons/wigglebone/wiggle_bone.gd" id="2_8pdhv"]
+[ext_resource type="Resource" uid="uid://cd1d7t7pa1lkx" path="res://models/objects/bagTraining/bag_training_bone_properties.tres" id="3_adfki"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_214e5"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0i5vd"]
+allow_transition_to_self = true
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "small"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "big"
+input_2/auto_advance = true
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_abw81"]
+animation = &"hit_back_large"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cgaus"]
+animation = &"hit_back_small"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s3amj"]
+graph_offset = Vector2(-495.644, 47.6841)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_214e5")
+nodes/Idle/position = Vector2(-320, 80)
+nodes/hit/node = SubResource("AnimationNodeTransition_0i5vd")
+nodes/hit/position = Vector2(-20, 160)
+nodes/hit_big/node = SubResource("AnimationNodeAnimation_abw81")
+nodes/hit_big/position = Vector2(-320, 360)
+nodes/hit_small/node = SubResource("AnimationNodeAnimation_cgaus")
+nodes/hit_small/position = Vector2(-320, 220)
+node_connections = [&"hit", 0, &"Idle", &"hit", 1, &"hit_small", &"hit", 2, &"hit_big", &"output", 0, &"hit"]
+
+[node name="bagTraining" instance=ExtResource("1_36n74")]
+
+[node name="WiggleBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 1.86, 0)
+bone_name = "bag"
+bone_idx = 2
+script = ExtResource("2_8pdhv")
+properties = ExtResource("3_adfki")
+
+[node name="WiggleBone2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 1.4775, 0)
+bone_name = "bag.001"
+bone_idx = 3
+script = ExtResource("2_8pdhv")
+properties = ExtResource("3_adfki")
+
+[node name="WiggleBone3" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 1.095, 0)
+bone_name = "bag.002"
+bone_idx = 4
+script = ExtResource("2_8pdhv")
+properties = ExtResource("3_adfki")
+
+[node name="WiggleBone4" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0.7125, 0)
+bone_name = "bag.003"
+bone_idx = 5
+script = ExtResource("2_8pdhv")
+properties = ExtResource("3_adfki")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_s3amj")
+anim_player = NodePath("../AnimationPlayer")
+parameters/hit/current_state = "idle"
+parameters/hit/transition_request = ""
+parameters/hit/current_index = 0
