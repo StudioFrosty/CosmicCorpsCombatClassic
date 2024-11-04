@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var credits_button = $Control/MarginContainer/VBoxContainer/Credits
 @onready var quit_button = $Control/MarginContainer/VBoxContainer/Quit
 
-
+ 
 
 func _on_versus_pressed() -> void:
 	get_tree().change_scene_to_file("res://Character Select Screen.tscn")
