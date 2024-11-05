@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7oqgbyre1xbw"]
+[gd_scene load_steps=13 format=3 uid="uid://b7oqgbyre1xbw"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_2pivu"]
 [ext_resource type="Script" path="res://player_movement.gd" id="1_yo7gw"]
 [ext_resource type="Script" path="res://player_2_movement.gd" id="2_yqd0b"]
+[ext_resource type="PackedScene" uid="uid://clq84qlv0cwun" path="res://maincamera.tscn" id="4_1a425"]
+[ext_resource type="PackedScene" uid="uid://wqfn5i8nqb86" path="res://maps/TrainingPlane/training_plane.tscn" id="4_pa0rr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65324"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -36,13 +38,6 @@ environment = SubResource("Environment_icl1i")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player1", "player2")]
-transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, -0.0106964, 2.64059, 3.38312)
-current = true
-script = ExtResource("1_2pivu")
-player1 = NodePath("../player1")
-player2 = NodePath("../player2")
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.488061, 0)
@@ -78,3 +73,11 @@ mesh = SubResource("CapsuleMesh_qitd7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player2"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_58lea")
+
+[node name="TrainingPlane" parent="." instance=ExtResource("4_pa0rr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Node3D" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("4_1a425")]
+script = ExtResource("1_2pivu")
+player1 = NodePath("../player1")
+player2 = NodePath("../player2")

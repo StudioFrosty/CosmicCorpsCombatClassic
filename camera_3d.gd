@@ -1,4 +1,4 @@
-extends Camera3D 
+extends Node3D 
 
 @export var player1: CharacterBody3D
 @export var player2: CharacterBody3D
