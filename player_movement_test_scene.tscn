@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7oqgbyre1xbw"]
+[gd_scene load_steps=12 format=3 uid="uid://b7oqgbyre1xbw"]
 
-[ext_resource type="Script" path="res://camera_3d.gd" id="1_2pivu"]
-[ext_resource type="Script" path="res://player_movement.gd" id="1_yo7gw"]
-[ext_resource type="Script" path="res://player_2_movement.gd" id="2_yqd0b"]
-[ext_resource type="PackedScene" uid="uid://clq84qlv0cwun" path="res://maincamera.tscn" id="4_1a425"]
+[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_2pivu"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_i3ay1"]
+[ext_resource type="PackedScene" uid="uid://clq84qlv0cwun" path="res://components/maincamera.tscn" id="4_1a425"]
 [ext_resource type="PackedScene" uid="uid://wqfn5i8nqb86" path="res://maps/TrainingPlane/training_plane.tscn" id="4_pa0rr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65324"]
@@ -49,9 +48,9 @@ mesh = SubResource("PlaneMesh_ckka2")
 shape = SubResource("ConcavePolygonShape3D_bqs17")
 
 [node name="player1" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2899, 1.06766, -0.123802)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 axis_lock_linear_z = true
-script = ExtResource("1_yo7gw")
+script = ExtResource("1_i3ay1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player1"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -62,9 +61,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_58lea")
 
 [node name="player2" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05634, 0.463683, -0.123802)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
 axis_lock_linear_z = true
-script = ExtResource("2_yqd0b")
+script = ExtResource("1_i3ay1")
+player_index = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player2"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

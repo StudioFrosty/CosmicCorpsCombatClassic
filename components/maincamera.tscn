@@ -21,7 +21,7 @@ shader_parameter/grazing_fresnel_power = 5.0
 shader_parameter/grazing_angle_mask_power = 1.0
 shader_parameter/grazing_angle_modulation_factor = 50.0
 
-[node name="Node3D" type="Node3D"]
+[node name="mainCamera" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
