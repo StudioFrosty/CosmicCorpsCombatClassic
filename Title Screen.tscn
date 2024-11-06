@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dejtaa7s52uyr"]
 
-[ext_resource type="Script" path="res://title_screen.gd" id="1_b4xwq"]
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_x3e2y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_34oib"]
 font_size = 64
@@ -18,7 +18,7 @@ material = SubResource("StandardMaterial3D_4gy14")
 size = Vector2(100, 100)
 
 [node name="TitleScreen" type="CanvasLayer"]
-script = ExtResource("1_b4xwq")
+script = ExtResource("1_x3e2y")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

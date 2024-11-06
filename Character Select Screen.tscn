@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://do2qqt0p0gv2w"]
 
-[ext_resource type="Script" path="res://character_select_screen.gd" id="1_ecj02"]
+[ext_resource type="Script" path="res://scripts/character_select_screen.gd" id="1_awj32"]
 
 [node name="CharacterSelect" type="Node2D"]
-script = ExtResource("1_ecj02")
+script = ExtResource("1_awj32")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
