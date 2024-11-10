@@ -32,6 +32,10 @@ project/assembly_name="Cosmic Corps Combat Classic"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/wigglebone/plugin.cfg")
+
 [input]
 
 Left_0={
@@ -173,3 +177,7 @@ Taunt_1={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":4,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[physics]
+
+3d/physics_engine="JoltPhysics3D"
