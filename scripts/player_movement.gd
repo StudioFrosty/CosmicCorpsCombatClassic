@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 # Constants
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const HORIZONTAL_JUMP_VELOCITY = 3
+@export var SPEED = 5.0
+@export var JUMP_VELOCITY = 4.5
+@export var HORIZONTAL_JUMP_VELOCITY = 3
 
 # Player index variable
 @export var player_index : int = 0  # Can be 0 for player 1 or 1 for player 2
