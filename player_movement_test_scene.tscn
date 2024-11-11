@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7oqgbyre1xbw"]
+[gd_scene load_steps=13 format=3 uid="uid://b7oqgbyre1xbw"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_2pivu"]
 [ext_resource type="Script" path="res://player_movement.gd" id="1_yo7gw"]
 [ext_resource type="Script" path="res://player_2_movement.gd" id="2_yqd0b"]
+[ext_resource type="Script" path="res://test_attack.gd" id="3_usowe"]
+[ext_resource type="PackedScene" uid="uid://by3k2enn78p6a" path="res://test_hitbox_scene.tscn" id="4_k76gx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65324"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -66,6 +68,12 @@ mesh = SubResource("CapsuleMesh_qitd7")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_58lea")
 
+[node name="TestAttack" type="Node3D" parent="player1"]
+script = ExtResource("3_usowe")
+hitbox_scene = ExtResource("4_k76gx")
+
+[node name="AttackTimer" type="Timer" parent="player1/TestAttack"]
+
 [node name="player2" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05634, 0.463683, -0.123802)
 axis_lock_linear_z = true
@@ -78,3 +86,5 @@ mesh = SubResource("CapsuleMesh_qitd7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player2"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_58lea")
+
+[connection signal="is_attacking" from="player1/TestAttack" to="player1" method="_on_test_attack_is_attacking"]
