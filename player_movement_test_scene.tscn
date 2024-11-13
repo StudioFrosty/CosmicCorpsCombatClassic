@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7oqgbyre1xbw"]
+[gd_scene load_steps=14 format=3 uid="uid://b7oqgbyre1xbw"]
 
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_2pivu"]
 [ext_resource type="PackedScene" uid="uid://dg8vexmsa2u2g" path="res://components/player.tscn" id="1_pi842"]
+[ext_resource type="Script" path="res://TestAttack.gd" id="2_5sin3"]
+[ext_resource type="PackedScene" uid="uid://d2vmo1wb7ja8p" path="res://TestHitbox.tscn" id="3_e7qyl"]
 [ext_resource type="PackedScene" uid="uid://clq84qlv0cwun" path="res://components/maincamera.tscn" id="4_1a425"]
 [ext_resource type="PackedScene" uid="uid://wqfn5i8nqb86" path="res://maps/TrainingPlane/training_plane.tscn" id="4_pa0rr"]
 [ext_resource type="AudioStream" uid="uid://bddh0pn3ao3mb" path="res://music/F1dg3t - Get Over Yourself.mp3" id="5_rwv3l"]
@@ -44,14 +46,21 @@ mesh = SubResource("PlaneMesh_ckka2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_bqs17")
 
-[node name="player" parent="." instance=ExtResource("1_pi842")]
+[node name="player1" parent="." instance=ExtResource("1_pi842")]
+
+[node name="Node3D" type="Node3D" parent="player1"]
+script = ExtResource("2_5sin3")
+hitbox_scene = ExtResource("3_e7qyl")
+hitbox_rotation = Vector3(0, 0, 0)
+
+[node name="AttackTimer" type="Timer" parent="player1/Node3D"]
 
 [node name="TrainingPlane" parent="." instance=ExtResource("4_pa0rr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="Node3D" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("4_1a425")]
 script = ExtResource("1_2pivu")
-player1 = NodePath("../player")
+player1 = NodePath("../player1")
 player2 = NodePath("../player2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -81,3 +90,5 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 11, 0, 2)
 [node name="player2" parent="." instance=ExtResource("1_pi842")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
 player_index = 1
+
+[connection signal="is_attacking" from="player1/Node3D" to="player1" method="_on_node_3d_is_attacking"]

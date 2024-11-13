@@ -1,11 +1,14 @@
 extends CharacterBody3D
 
-# Constants
-@export var SPEED = 5.0
-@export var JUMP_VELOCITY = 4.5
-@export var HORIZONTAL_JUMP_VELOCITY = 3
+@export var speed = 5.0
+@export var jump_velocity = 4.5
+@export var horizontal_jump_velocity = 3
 
-# Player index variable
+var speed_change = 1
+var jump_velocity_change = 1
+var horizontal_jump_velocity_change = 1
+
+#  index variable
 @export var player_index : int = 0  # Can be 0 for player 1 or 1 for player 2
 
 # Physics process function
@@ -24,16 +27,29 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	# Apply movement
-	if direction and is_on_floor():
-		velocity.x = direction.x * SPEED
-	if !direction and is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * speed * speed_change
+		else:
+			velocity.x = 0
 
 	# Handle jump input
 	var jump_input = "Jump_" + str(player_index)
 	if Input.is_action_just_pressed(jump_input) and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		velocity.x = direction.x * HORIZONTAL_JUMP_VELOCITY
+		velocity.y = jump_velocity * jump_velocity_change
+		velocity.x = direction.x * horizontal_jump_velocity * horizontal_jump_velocity_change
 
 	# Apply movement
 	move_and_slide()
+
+
+func _on_node_3d_is_attacking(is_attacking: Variant) -> void:
+	if is_attacking == true:
+		speed_change = 0
+		jump_velocity_change = 0
+		horizontal_jump_velocity_change = 0
+	else:
+		speed_change = 1
+		jump_velocity_change = 1
+		horizontal_jump_velocity_change = 1
+	
