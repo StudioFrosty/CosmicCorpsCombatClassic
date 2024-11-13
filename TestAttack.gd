@@ -10,6 +10,7 @@ extends Node3D
 @export var damage : float = 1.0
 @export var hitbox_offset : Vector3 = Vector3(1, 0, 0)
 @export var hitbox_rotation : Vector3 = Vector3(0, 90, 0)
+@export var player_index : int = 0
 
 signal is_attacking(is_attacking)
 
@@ -29,7 +30,7 @@ func _ready():
 	attack_timer.autostart = false
 	
 func _process(delta):
-	if Input.is_action_just_pressed("Light attack_0") and current_phase == AttackPhase.AVAILABLE:
+	if Input.is_action_just_pressed("Light attack_" + str(player_index)) and current_phase == AttackPhase.AVAILABLE:
 		emit_signal("is_attacking", true)
 		set_up_hitbox()
 
