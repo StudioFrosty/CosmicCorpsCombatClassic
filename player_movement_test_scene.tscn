@@ -25,14 +25,13 @@ mesh = SubResource("PlaneMesh_ckka2")
 shape = SubResource("ConcavePolygonShape3D_bqs17")
 
 [node name="player1" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("1_pi842")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 opponent = NodePath("../player2")
 starts_on_right_side = false
 
-[node name="player2" parent="." instance=ExtResource("1_pi842")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
-player_index = 1
-
-[node name="Node3D" parent="player2" index="2"]
+[node name="player2" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("1_pi842")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+opponent = NodePath("../player1")
 player_index = 1
 
 [node name="TrainingPlane" parent="." instance=ExtResource("4_pa0rr")]
@@ -68,10 +67,3 @@ transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 11, 0, -2)
 
 [node name="barrier5" parent="." instance=ExtResource("6_r7u2t")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 11, 0, 2)
-
-[node name="player2" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("1_pi842")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
-opponent = NodePath("../player1")
-player_index = 1
-
-[connection signal="is_attacking" from="player1/Node3D" to="player1" method="_on_node_3d_is_attacking"]

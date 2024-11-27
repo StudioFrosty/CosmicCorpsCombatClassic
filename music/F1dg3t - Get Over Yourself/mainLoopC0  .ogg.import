@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c6amto5nh2rfn"
+path="res://.godot/imported/mainLoopC0  .ogg-edb01ebeb579f0d350f9a45da283084e.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/F1dg3t - Get Over Yourself/mainLoopC0  .ogg"
+dest_files=["res://.godot/imported/mainLoopC0  .ogg-edb01ebeb579f0d350f9a45da283084e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

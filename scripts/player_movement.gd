@@ -6,14 +6,24 @@ extends CharacterBody3D
 @export var opponent: CharacterBody3D
 @export var starts_on_right_side = true
 
+var is_on_right_side = starts_on_right_side
+
 var speed_change = 1
 var jump_velocity_change = 1
 var horizontal_jump_velocity_change = 1
 
-var was_in_air
-
 #  index variable
 @export var player_index : int = 0  # Can be 0 for player 1 or 1 for player 2
+
+func _ready():
+	if opponent.position.x < position.x:
+		is_on_right_side = true
+		rotate_y(180 * deg_to_rad(1))
+		speed *= -1
+		horizontal_jump_velocity *= -1
+	else:
+		is_on_right_side = false
+		
 
 # Physics process function
 func _physics_process(delta: float) -> void:
@@ -43,25 +53,25 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(jump_input) and is_on_floor():
 		velocity.y = jump_velocity * jump_velocity_change
 		velocity.x = direction.x * horizontal_jump_velocity * horizontal_jump_velocity_change
-		was_in_air = true
+		
 
 	# Apply movement
 	move_and_slide()
 
 func switch_sides():
-	if 	opponent.position.x > position.x and starts_on_right_side and was_in_air:
-		starts_on_right_side = false
+	if 	opponent.position.x > position.x and is_on_right_side:
+		is_on_right_side = false
 		rotate_y(180 * deg_to_rad(1))
 		speed *= -1
 		horizontal_jump_velocity *= -1
-		was_in_air = false
 		
-	if 	opponent.position.x < position.x and !starts_on_right_side and was_in_air:
-		starts_on_right_side = true
+		
+	if 	opponent.position.x < position.x and not is_on_right_side:
+		is_on_right_side = true
 		rotate_y(180 * deg_to_rad(1))
 		speed *= -1
 		horizontal_jump_velocity *= -1
-		was_in_air = false
+		
 
 func _on_node_3d_is_attacking(is_attacking: Variant) -> void:
 	if is_attacking == true:
