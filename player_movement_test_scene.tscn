@@ -1,26 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7oqgbyre1xbw"]
+[gd_scene load_steps=9 format=3 uid="uid://b7oqgbyre1xbw"]
 
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_2pivu"]
 [ext_resource type="PackedScene" uid="uid://dg8vexmsa2u2g" path="res://components/player.tscn" id="1_pi842"]
-[ext_resource type="Script" path="res://TestAttack.gd" id="2_5sin3"]
-[ext_resource type="PackedScene" uid="uid://d2vmo1wb7ja8p" path="res://TestHitbox.tscn" id="3_e7qyl"]
 [ext_resource type="PackedScene" uid="uid://clq84qlv0cwun" path="res://components/maincamera.tscn" id="4_1a425"]
 [ext_resource type="PackedScene" uid="uid://wqfn5i8nqb86" path="res://maps/TrainingPlane/training_plane.tscn" id="4_pa0rr"]
-[ext_resource type="AudioStream" uid="uid://bddh0pn3ao3mb" path="res://music/F1dg3t - Get Over Yourself.mp3" id="5_rwv3l"]
+[ext_resource type="PackedScene" uid="uid://dg13nunqwy3n8" path="res://music/F1dg3t - Get Over Yourself/track_F1dg3t - Get Over Yourself.tscn" id="5_pjkpd"]
 [ext_resource type="PackedScene" uid="uid://b6t3mbd4uglf4" path="res://models/objects/barrier/barrier.tscn" id="6_r7u2t"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65324"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_cqx7x"]
-sky_material = SubResource("ProceduralSkyMaterial_65324")
-
-[sub_resource type="Environment" id="Environment_icl1i"]
-background_mode = 2
-sky = SubResource("Sky_cqx7x")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ckka2"]
 size = Vector2(40, 3)
@@ -29,13 +14,6 @@ size = Vector2(40, 3)
 data = PackedVector3Array(10, 0, 1, -10, 0, 1, 10, 0, -1, -10, 0, 1, -10, 0, -1, 10, 0, -1)
 
 [node name="PlayerMovementTestScene" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_icl1i")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.488061, 0)
@@ -50,12 +28,12 @@ shape = SubResource("ConcavePolygonShape3D_bqs17")
 opponent = NodePath("../player2")
 starts_on_right_side = false
 
-[node name="Node3D" type="Node3D" parent="player1"]
-script = ExtResource("2_5sin3")
-hitbox_scene = ExtResource("3_e7qyl")
-hitbox_rotation = Vector3(0, 0, 0)
+[node name="player2" parent="." instance=ExtResource("1_pi842")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+player_index = 1
 
-[node name="AttackTimer" type="Timer" parent="player1/Node3D"]
+[node name="Node3D" parent="player2" index="2"]
+player_index = 1
 
 [node name="TrainingPlane" parent="." instance=ExtResource("4_pa0rr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
@@ -65,11 +43,13 @@ script = ExtResource("1_2pivu")
 player1 = NodePath("../player1")
 player2 = NodePath("../player2")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_rwv3l")
-volume_db = -10.0
-autoplay = true
-parameters/looping = true
+[node name="track_F1dg3t - Get Over Yourself" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("5_pjkpd")]
+player1 = NodePath("../player1")
+player2 = NodePath("../player2")
+start_close_music = 4
+close_endings = Array[int]([5, 7, 11])
+start_far_music = 1
+far_endings = Array[int]([2, 3])
 
 [node name="barrier" parent="." instance=ExtResource("6_r7u2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)

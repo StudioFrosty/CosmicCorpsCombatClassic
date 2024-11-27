@@ -1,0 +1,80 @@
+[gd_scene load_steps=17 format=3 uid="uid://dg13nunqwy3n8"]
+
+[ext_resource type="AudioStream" uid="uid://ybmgd7xyl0y4" path="res://music/F1dg3t - Get Over Yourself/Intro.ogg" id="1_mfsg7"]
+[ext_resource type="AudioStream" uid="uid://5ewdbrkcqtpu" path="res://music/F1dg3t - Get Over Yourself/lightLoopA.ogg" id="2_o0acs"]
+[ext_resource type="AudioStream" uid="uid://6d6cynlq8hcj" path="res://music/F1dg3t - Get Over Yourself/mainLoopC1.ogg" id="3_ijmu4"]
+[ext_resource type="AudioStream" uid="uid://dlgtb6me8imfj" path="res://music/F1dg3t - Get Over Yourself/mainLoopCOut.ogg" id="4_fpfdy"]
+[ext_resource type="AudioStream" uid="uid://dvdktd0aitkea" path="res://music/F1dg3t - Get Over Yourself/outroLoop.ogg" id="5_nonur"]
+[ext_resource type="AudioStream" uid="uid://g0nk887am4cp" path="res://music/F1dg3t - Get Over Yourself/Outro.ogg" id="6_ip1ie"]
+[ext_resource type="AudioStream" uid="uid://crisdcllldho1" path="res://music/F1dg3t - Get Over Yourself/lightLoopB.ogg" id="7_aqdwg"]
+[ext_resource type="AudioStream" uid="uid://lk3ax356epf1" path="res://music/F1dg3t - Get Over Yourself/lightLoopBOut.ogg" id="8_a0apt"]
+[ext_resource type="AudioStream" uid="uid://cd43olgcm81rs" path="res://music/F1dg3t - Get Over Yourself/mainLoopA.ogg" id="9_kuglt"]
+[ext_resource type="AudioStream" uid="uid://be17imprg35w1" path="res://music/F1dg3t - Get Over Yourself/mainLoopAOut.ogg" id="10_7pl3h"]
+[ext_resource type="AudioStream" uid="uid://du6t2s1j0g37n" path="res://music/F1dg3t - Get Over Yourself/mainLoopB.ogg" id="11_h5q3q"]
+[ext_resource type="AudioStream" uid="uid://d1dw5h2db3p0t" path="res://music/F1dg3t - Get Over Yourself/mainLoopBOut.ogg" id="12_7j3p0"]
+[ext_resource type="AudioStream" uid="uid://dj4rhmq1vev01" path="res://music/F1dg3t - Get Over Yourself/mainLoopCIn.ogg" id="13_p5rc7"]
+[ext_resource type="AudioStream" uid="uid://dw8m4khx8crma" path="res://music/F1dg3t - Get Over Yourself/mainLoopC0  .ogg" id="14_ek5ke"]
+[ext_resource type="Script" path="res://scripts/DynamicMusicController.gd" id="15_215ia"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_xlnpv"]
+clip_count = 14
+clip_0/name = &"Intro"
+clip_0/stream = ExtResource("1_mfsg7")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Light Loop A"
+clip_1/stream = ExtResource("2_o0acs")
+clip_1/auto_advance = 1
+clip_1/next_clip = 2
+clip_2/name = &"Light Loop B"
+clip_2/stream = ExtResource("7_aqdwg")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Light Loop B Out"
+clip_3/stream = ExtResource("8_a0apt")
+clip_3/auto_advance = 1
+clip_3/next_clip = 4
+clip_4/name = &"Main Loop A"
+clip_4/stream = ExtResource("9_kuglt")
+clip_4/auto_advance = 1
+clip_4/next_clip = 5
+clip_5/name = &"Main Loop A Out"
+clip_5/stream = ExtResource("10_7pl3h")
+clip_5/auto_advance = 1
+clip_5/next_clip = 6
+clip_6/name = &"Main Loop B"
+clip_6/stream = ExtResource("11_h5q3q")
+clip_6/auto_advance = 1
+clip_6/next_clip = 7
+clip_7/name = &"Main Loop B Out"
+clip_7/stream = ExtResource("12_7j3p0")
+clip_7/auto_advance = 1
+clip_7/next_clip = 8
+clip_8/name = &"Main Loop C In"
+clip_8/stream = ExtResource("13_p5rc7")
+clip_8/auto_advance = 1
+clip_8/next_clip = 9
+clip_9/name = &"Main Loop C 0"
+clip_9/stream = ExtResource("14_ek5ke")
+clip_9/auto_advance = 1
+clip_9/next_clip = 10
+clip_10/name = &"Main Loop C 1"
+clip_10/stream = ExtResource("3_ijmu4")
+clip_10/auto_advance = 1
+clip_10/next_clip = 11
+clip_11/name = &"Main Loop C Out"
+clip_11/stream = ExtResource("4_fpfdy")
+clip_11/auto_advance = 1
+clip_11/next_clip = 4
+clip_12/name = &"Outro Loop"
+clip_12/stream = ExtResource("5_nonur")
+clip_12/auto_advance = 0
+clip_13/name = &"Outro"
+clip_13/stream = ExtResource("6_ip1ie")
+clip_13/auto_advance = 0
+
+[node name="track_F1dg3t - Get Over Yourself" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamInteractive_xlnpv")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("15_215ia")
