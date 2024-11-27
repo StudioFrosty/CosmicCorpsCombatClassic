@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bckimey5bahk"
+path="res://.godot/imported/lightLoopB.ogg-0bb822af061716f6e3f0db6449f7b10f.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/F1dg3t - Get Over Yourself/lightLoopB.ogg"
+dest_files=["res://.godot/imported/lightLoopB.ogg-0bb822af061716f6e3f0db6449f7b10f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
