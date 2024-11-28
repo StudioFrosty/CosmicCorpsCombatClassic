@@ -1,15 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dg8vexmsa2u2g"]
+[gd_scene load_steps=10 format=3 uid="uid://tkeonnx1otpm"]
 
-[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_x4uxl"]
-[ext_resource type="Shader" path="res://shaders/SurfaceToon.gdshader" id="2_1ddcj"]
-[ext_resource type="Script" path="res://scripts/TestAttack.gd" id="2_oxb4b"]
-[ext_resource type="Script" path="res://components/hitbox.gd" id="4_0gkdt"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_uf3x4"]
+[ext_resource type="Shader" path="res://shaders/SurfaceToon.gdshader" id="2_dcrdt"]
+[ext_resource type="Script" path="res://scripts/TestAttack.gd" id="3_deg7s"]
+[ext_resource type="Script" path="res://components/hitbox.gd" id="4_mih6c"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qitd7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tu8c2"]
 render_priority = 0
-shader = ExtResource("2_1ddcj")
+shader = ExtResource("2_dcrdt")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 3
@@ -33,10 +33,11 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [sub_resource type="BoxMesh" id="BoxMesh_j7eip"]
 
-[node name="player1" type="CharacterBody3D"]
+[node name="player2" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 axis_lock_linear_z = true
-script = ExtResource("1_x4uxl")
+script = ExtResource("1_uf3x4")
+player_index = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -47,26 +48,25 @@ surface_material_override/0 = SubResource("ShaderMaterial_tu8c2")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_58lea")
 
-[node name="TestAttack" type="Node3D" parent="." node_paths=PackedStringArray("hitbox")]
-script = ExtResource("2_oxb4b")
-start_up_duration = 0.001
-hitbox_duration = 0.6
-endlag_duration = 0.1
+[node name="Attack" type="Node3D" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("3_deg7s")
+start_up_duration = 0.3
+hitbox_duration = 0.2
+player_index = 1
 hitbox = NodePath("Hitbox")
 
-[node name="AttackTimer" type="Timer" parent="TestAttack"]
+[node name="AttackTimer" type="Timer" parent="Attack"]
 
-[node name="Hitbox" type="Area3D" parent="TestAttack"]
+[node name="Hitbox" type="Area3D" parent="Attack"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 visible = false
 monitoring = false
-script = ExtResource("4_0gkdt")
-hit_stop_duration = 3.0
+script = ExtResource("4_mih6c")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestAttack/Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attack/Hitbox"]
 shape = SubResource("BoxShape3D_rl1o3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestAttack/Hitbox/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Attack/Hitbox/CollisionShape3D"]
 mesh = SubResource("BoxMesh_j7eip")
 
-[connection signal="is_attacking" from="TestAttack" to="." method="_on_node_3d_is_attacking"]
+[connection signal="is_attacking" from="Attack" to="." method="_on_node_3d_is_attacking"]
