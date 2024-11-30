@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7oqgbyre1xbw"]
+[gd_scene load_steps=10 format=3 uid="uid://b7oqgbyre1xbw"]
 
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_2pivu"]
 [ext_resource type="PackedScene" uid="uid://dg8vexmsa2u2g" path="res://components/player.tscn" id="1_pi842"]
+[ext_resource type="PackedScene" uid="uid://tkeonnx1otpm" path="res://components/player2.tscn" id="2_11lob"]
 [ext_resource type="PackedScene" uid="uid://clq84qlv0cwun" path="res://components/maincamera.tscn" id="4_1a425"]
 [ext_resource type="PackedScene" uid="uid://wqfn5i8nqb86" path="res://maps/TrainingPlane/training_plane.tscn" id="4_pa0rr"]
 [ext_resource type="PackedScene" uid="uid://dg13nunqwy3n8" path="res://music/F1dg3t - Get Over Yourself/track_F1dg3t - Get Over Yourself.tscn" id="5_pjkpd"]
@@ -29,22 +30,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 opponent = NodePath("../player2")
 starts_on_right_side = false
 
-[node name="player2" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("1_pi842")]
+[node name="player2" parent="." node_paths=PackedStringArray("opponent") instance=ExtResource("2_11lob")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
 opponent = NodePath("../player1")
-player_index = 1
 
 [node name="TrainingPlane" parent="." instance=ExtResource("4_pa0rr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
-[node name="Node3D" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("4_1a425")]
+[node name="Cam" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("4_1a425")]
 script = ExtResource("1_2pivu")
 player1 = NodePath("../player1")
 player2 = NodePath("../player2")
 
-[node name="track_F1dg3t - Get Over Yourself" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("5_pjkpd")]
+[node name="track_F1dg3t - Get Over Yourself" parent="." node_paths=PackedStringArray("player1") instance=ExtResource("5_pjkpd")]
 player1 = NodePath("../player1")
-player2 = NodePath("../player2")
 start_close_music = 4
 close_endings = Array[int]([5, 7, 11])
 start_far_music = 1

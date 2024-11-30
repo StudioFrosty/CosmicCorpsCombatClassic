@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var speed = 5.0
 @export var jump_velocity = 4.5
 @export var horizontal_jump_velocity = 3
+@export var landing_lag = 0.5
+@export var jump_startup = 0.3
 @export var opponent: CharacterBody3D
 @export var starts_on_right_side = true
 

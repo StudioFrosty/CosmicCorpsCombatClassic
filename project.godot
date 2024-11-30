@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://CCCCIcon34x.png"
 config/icon="res://CCCCIcon34x.png"
 
+[autoload]
+
+GettingHitManager="*res://scripts/gettingHitManager.gd"
+PlayerStatusManager="*res://scripts/playerStatusManager.gd"
+
 [display]
 
 window/size/mode=2

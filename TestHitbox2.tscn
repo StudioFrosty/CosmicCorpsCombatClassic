@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnv1nm1iq7gm6"]
+[gd_scene load_steps=7 format=3 uid="uid://dbouta2s6wj78"]
 
 [ext_resource type="PackedScene" uid="uid://dg8vexmsa2u2g" path="res://components/player.tscn" id="1_u2tf1"]
 [ext_resource type="Shader" path="res://shaders/SurfaceToon.gdshader" id="2_gvfeq"]
-[ext_resource type="Script" path="res://TestAttack.gd" id="3_mpjri"]
-[ext_resource type="PackedScene" uid="uid://d2vmo1wb7ja8p" path="res://TestHitbox.tscn" id="4_mxgd3"]
+[ext_resource type="Script" path="res://scripts/TestAttack.gd" id="3_mpjri"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_my0bn"]
 
@@ -44,7 +43,5 @@ shape = SubResource("ConvexPolygonShape3D_1tmvg")
 
 [node name="Node3D" type="Node3D" parent="player2/CollisionShape3D2"]
 script = ExtResource("3_mpjri")
-hitbox_scene = ExtResource("4_mxgd3")
-hitbox_rotation = Vector3(0, 0, 0)
 
 [node name="AttackTimer" type="Timer" parent="player2/CollisionShape3D2/Node3D"]
