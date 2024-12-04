@@ -15,7 +15,7 @@ func take_damage(damage, player):
 		P2_die()
 		
 func P1_die():
-	pass
+	print("Player 1 is dead 0_o")
 	
 func P2_die():
-	pass
+	print("Player 2 is dead 0_o")

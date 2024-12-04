@@ -1,7 +1,6 @@
 extends Area3D
 
-signal attack_connected(hit_stun_duration, hit_stop_duration,
-						block_stun_duration, damage, knockback)
+signal attack_connected(block_stun_duration, knockback)
 
 @export_category("Hit stun frame data")
 @export var hit_stop_duration : float = 0.5
@@ -14,7 +13,9 @@ signal attack_connected(hit_stun_duration, hit_stop_duration,
 func _ready():
 	self.body_entered.connect(_on_body_entered)
 
-func _on_body_entered():
-	PlayerStatusManager.take_damage(damage, "P2")
-	GettingHitManager.hit_stop(hit_stop_duration)
-	GettingHitManager.hit_stun(hit_stun_duration, "P2")
+func _on_body_entered(body):
+	if body is CharacterBody3D:
+		print("body entered")
+		PlayerStatusManager.take_damage(damage, "P2")
+		GettingHitManager.hit_stop(hit_stop_duration)
+		GettingHitManager.hit_stun(hit_stun_duration, "P2")
