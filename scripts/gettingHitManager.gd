@@ -6,6 +6,7 @@ var P2_is_actionable = true
 
 func hit_stop(duration):
 	Engine.time_scale = 0
+	print("stopped!")
 	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = 1
 	
