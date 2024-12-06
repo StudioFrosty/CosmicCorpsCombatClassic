@@ -52,6 +52,7 @@ shape = SubResource("ConvexPolygonShape3D_58lea")
 script = ExtResource("3_deg7s")
 start_up_duration = 0.3
 hitbox_duration = 0.2
+hitbox_visualiser = true
 player_index = 1
 hitbox = NodePath("Hitbox")
 

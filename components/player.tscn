@@ -52,6 +52,7 @@ script = ExtResource("2_oxb4b")
 start_up_duration = 0.001
 hitbox_duration = 0.6
 endlag_duration = 0.1
+hitbox_visualiser = true
 hitbox = NodePath("Hitbox")
 
 [node name="AttackTimer" type="Timer" parent="TestAttack"]

@@ -4,7 +4,8 @@ extends Node3D
 @export var start_up_duration : float 
 @export var hitbox_duration : float   
 @export var endlag_duration : float
-@export_category("Attack location")
+@export_category("visability")
+@export var hitbox_visualiser = false
 @export_category("Player info")
 @export var player_index : int = 0
 
@@ -34,14 +35,15 @@ func _process(delta):
 func set_up_hitbox():
 	
 	current_phase = AttackPhase.STARTUP
+	hitbox.monitoring = true
 	attack_timer.start(start_up_duration)
 
 func _on_attack_timeout():
 	match current_phase:
 		AttackPhase.STARTUP:
 			current_phase = AttackPhase.ACTIVE
-			hitbox.monitoring = true
-			hitbox.visible = true
+			#hitbox.monitoring = true
+			hitbox.visible = hitbox_visualiser
 			attack_timer.start(hitbox_duration)
 		
 		AttackPhase.ACTIVE:
